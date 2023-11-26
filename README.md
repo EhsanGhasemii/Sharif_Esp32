@@ -74,8 +74,8 @@ By running this code, your model will be trained. Then the appropriate files are
 In order to correctly transfer your model on the board, you need to transfer the input and output size that you defined in the Python code to the model_define code and app_main.cpp. Also, in order for your program to predict the output with the highest accuracy, you must enter the production coefficients in the file I mentioned correctly. All these items are stored in the logs folder, which you can remove all of them from this folder. Finally, I have prepared a report of the performance of several examples that I have implemented in a file called report_prediction.log, which shows the accuracy of the program execution on the board compared to its execution in Python code.
 
 ### Results
-I have reached various results by performing these parts that I mentioned above, which I must mention here.
-1- The first important thing we wanted to achieve was how big a model we can transfer on the board. Therefore, by enlarging my model in the test21 folder, I tried to find the answer to this question. Finally I realized that we can port any model with less than 300k parameters. Therefore, the maximum amount of parameters that we can transfer is equal to 300k. Of course, this is if quantization is done with 16-byte data. If we use uint8_t, we can transfer up to 600k parameters.
+I have reached various results by performing these parts that I mentioned above, which I must mention here.  
+1. The first important thing we wanted to achieve was how big a model we can transfer on the board. Therefore, by enlarging my model in the test21 folder, I tried to find the answer to this question. Finally I realized that we can port any model with less than 300k parameters. Therefore, the maximum amount of parameters that we can transfer is equal to 300k. Of course, this is if quantization is done with 16-byte data. If we use uint8_t, we can transfer up to 600k parameters.
 
 
 ## Getting Started
