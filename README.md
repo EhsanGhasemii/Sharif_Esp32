@@ -78,7 +78,8 @@ I have reached various results by performing these parts that I mentioned above,
 1. The first important thing we wanted to achieve was how big a model we can transfer on the board. Therefore, by enlarging my model in the test21 folder, I tried to find the answer to this question. Finally I realized that we can port any model with less than 300k parameters. Therefore, the maximum amount of parameters that we can transfer is equal to 300k. Of course, this is if quantization is done with 16-byte data. If we use uint8_t, we can transfer up to 600k parameters. I used the following model and it got the following error which had more parameters than the maximum valid limit for parameter passing.  
 ![Image Description](/pics/test2.png)
 ![Image Description](/pics/test1.png)
-3. 
+2. The next item was to input images with a size larger than 64x64x3. In this case, we would encounter an error.
+3. And finally, we should mention the accuracy of this method for transferring deep learning models to the Esp32 module. I have been able to show the accuracy of quantization by this method in the report_prediction.log file by writing a set of predictions made by Python and Esp, which is around 0.05%. ![Image Description](/pics/test3.png)
 
 
 ## Getting Started
