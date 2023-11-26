@@ -1,0 +1,1 @@
+Unsuccessful project we try with pythorch to read our data from directory. Every thing was ok before deploying. For deploying we cant predict our unseened data with onnx converted model.  

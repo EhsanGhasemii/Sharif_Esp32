@@ -24,9 +24,10 @@ In this step, the model from test18 is repeated, but with a more complex dataset
 ### test20
 The test20 folder concludes the project by using the popular Mnist dataset. The same model architecture from test19 is applied to classify handwritten digits. This step demonstrates the successful deployment of a classifier model on the Esp32 platform using Esp-dl.
 
-### test21
+### test21(End of Mnist dataset)
 In this part, we implemented the same as the previous part, with the difference that we tried to make our model more complicated so that we could check the maximum parameters that we can transfer on the board. To be able to run this part correctly, you need to download the Mnist dataset and place it in the "src" folder. You can do this from the link below. The format of the file you put must be mnist.npz.  
-https://www.kaggle.com/datasets/vikramtiwari/mnist-numpy/  
+The dataset used in this project is sourced from Kaggle [link](https://www.kaggle.com/datasets/vikramtiwari/mnist-numpy/ ).
+ 
 In order to run this part of the project correctly, you must create a directory like the one below and run the Mnist.py file in the src folder.  
 - main
     - app_main.cpp
@@ -37,6 +38,39 @@ In order to run this part of the project correctly, you must create a directory 
     - model_define
 - src
 - CMakeLists.txt
+
+
+### test22
+This episode was a failed attempt. I was planning to do this project with the help of torch. My reason was that I wanted to read the input images from my local memory this time, and this was done well with the help of torch. I could also use it to process my deep learning model on the GPU. Finally, we did this with the help of tensorflow in folder 23, but the processing is still done on the CPU.
+
+### test23
+In this part, I tried to do the gender classification project with the help of deep learning. I used the Gender classification dataset in the link below.  
+The dataset used in this project is sourced from Kaggle [link](https://www.kaggle.com/datasets/cashutosh/gender-classification-dataset/code).  
+In this section, you must create a directory similar to the following.
+- archive
+- logs
+- main
+  - app_main.cpp
+  - CMakeLists.txt
+  - image.hpp
+- model
+  - Mnist_coefficient.cpp
+  - Mnist_coefficient.hpp
+  - model_define.hpp
+- src
+  - calibrator.pyd
+  - calibrator.so
+  - calibrator_acc.pyd
+  - calibrator_acc.so
+  - evaluator.pyd
+  - evaluator.so
+  - Mnist.py
+  - optimizer.py
+- CMakeLists.txt
+
+
+Due to the fact that I have used the same files related to the Mnist code in the continuation of my project, all the names in this part and probably the next parts have the same name. But it is professional behavior to update the names according to your current project. Therefore, the main code that you should run in this section is the Mnist.py code in the same src folder.
+
 
 
 ## Getting Started
