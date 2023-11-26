@@ -24,9 +24,20 @@ In this step, the model from test18 is repeated, but with a more complex dataset
 ### test20
 The test20 folder concludes the project by using the popular Mnist dataset. The same model architecture from test19 is applied to classify handwritten digits. This step demonstrates the successful deployment of a classifier model on the Esp32 platform using Esp-dl.
 
-### test20
+### test2۱
 In this part, we implemented the same as the previous part, with the difference that we tried to make our model more complicated so that we could check the maximum parameters that we can transfer on the board. To be able to run this part correctly, you need to download the Mnist dataset and place it in the "src" folder. You can do this from the link below. The format of the file you put must be mnist.npz.  
-https://www.kaggle.com/datasets/vikramtiwari/mnist-numpy/
+https://www.kaggle.com/datasets/vikramtiwari/mnist-numpy/  
+In order to run this part of the project correctly, you must create a directory like the one below and run the Mnist.py file in the src folder.  
+-main
+    -app_main.cpp
+    -CMakeLists.txt
+-model
+    -Mnist_coefficient.cpp
+    -Mnist_coefficient.hpp
+    -model_define
+-src
+-CMakeLists.txt
+
 
 ## Getting Started
 
