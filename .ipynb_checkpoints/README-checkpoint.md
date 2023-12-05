@@ -43,7 +43,7 @@ Here, all you need to do is simply execute the "Mnist.py" code. By doing so, two
 
 Now, let's move on to the main part of the project, which is executing the Python code that I mentioned earlier.
 
-### 1. import our needed libraries
+### 0. import our needed libraries
 
 
 ```python
@@ -62,10 +62,12 @@ from calibrator import *
 from evaluator import *
 ```
 
-### 2. Loading our dataset
+### 1. Loading our dataset
 In this part, you need to choose a dataset on which you want to implement your deep learning model and input it into your program. Here, I have worked with the Mnist dataset initially and then selected another dataset for gender classification. I have provided the links to both datasets below.
 - The dataset used in this project is sourced from Kaggle [link](https://www.kaggle.com/datasets/vikramtiwari/mnist-numpy/ ).
 - The dataset used in this project is sourced from Kaggle [link](https://www.kaggle.com/datasets/cashutosh/gender-classification-dataset/code).  
+
+
 The first dataset is structured in a way that you download a file named "mnist.npz" and read it in a similar manner in‍‍ your program.
 ```python
 # load the data and split it between train and test sets
@@ -120,6 +122,89 @@ val_ds = tf.keras.utils.image_dataset_from_directory(
 class_names = train_ds.class_names
 print(class_names)
 ```
+### 2. Visualizing our data
+If you need to inspect your initial data and view some of them, you can execute the following code snippet. As you have noticed so far, running this section is not mandatory and is only used for initial data exploration.  
+
+```python
+plt.figure(figsize=(10, 10))
+for images, labels in train_ds.take(1):
+  for i in range(9):
+    ax = plt.subplot(3, 3, i + 1)
+    plt.imshow(images[i].numpy().astype("uint8"))
+    plt.title(class_names[labels[i]])
+    plt.axis("off")
+plt.show()
+```
+
+### 3. Build our model
+In this part, you need to design your deep learning model. For example, I have used a neural network with 4 Conv_2d layers and a MaxPooling_2d layer, followed by a Softmax layer for classification. The only point to consider here is that you should use layers supported by esp-dl.  
+
+```python
+model = keras.Sequential()
+model.add(keras.Input(shape=input_shape))
+model.add(layers.Conv2D(16, kernel_size=(3, 3), activation="relu"))
+model.add(layers.Conv2D(16, kernel_size=(3, 3), activation="relu"))
+model.add(layers.Conv2D(16, kernel_size=(3, 3), activation="relu"))
+model.add(layers.Conv2D(16, kernel_size=(3, 3), activation="relu"))
+model.add(layers.MaxPooling2D(pool_size=(2, 2)))
+
+model.add(layers.Flatten())
+model.add(layers.Dropout(0.5))
+model.add(layers.Dense(num_classes, activation="softmax"))
+model.summary()
+```
+
+### 4. Training the model
+In this part, you first build the neural network that you have designed, and then train it on your dataset. Here, I have used a train_flag that indicates whether the neural network should start training or not, based on the command given by the user. That is, we receive this flag from the user at the beginning. The reason for this is that in many cases, we need to perform multiple tests on a trained model and do not want to start training from scratch again. Instead, we want to test the initial model results.  
+
+```python
+# model configuration
+batch_size = 64
+epochs = 5
+
+# model compile
+model.compile(
+  optimizer='adam',
+  loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+  metrics=['accuracy'],
+  experimental_run_tf_function=False
+)
+
+if train_flag == 'y': 
+
+    # training process
+    history = model.fit(train_ds,
+                        # validation_data=val_ds,
+                        epochs=epochs,
+                        batch_size=batch_size
+                       )
+```
+
+### 5. Evaluate the trained model (optional)
+```python
+loss, accuracy = model.evaluate(val_ds, verbose=0)
+print(f'Test loss: {loss:.4f}')
+print(f'Test accuracy: {accuracy:.4f}')
+```
+
+### 6. Test our model (optional)
+```python
+# calculating prediction for a batch of data
+batch = next(iter(val_ds.take(1)))
+images, labels = batch[0].numpy().astype("uint8"), batch[1].numpy()
+pred = model.predict(images)
+pred = np.argmax(pred, axis=1)
+plt.figure(figsize=(10, 10))
+for i in range(9):
+    ax = plt.subplot(3, 3, i + 1)
+    plt.imshow(images[i])
+    plt.title(class_names[labels[i]])
+    ax.set_title("{}({})".format(class_names[labels[i]], class_names[int(pred[i])]),
+             color='green' if labels[i]==pred[i] else 'red')
+    plt.axis("off")
+plt.show()
+```
+
 
 
 
