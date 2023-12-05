@@ -41,6 +41,9 @@ I have prepared a Python code for this project that automatically generates all 
 
 Here, all you need to do is simply execute the "Mnist.py" code. By doing so, two files, "Mnist_coefficient.cpp" and "Mnist_coefficient.hpp," will be automatically generated. However, it is necessary for you to create the files "app_main.cpp," "image.hpp," and "model_define.hpp" exactly as I have written them.  
 
+It is also worth mentioning that the "logs" directory has been created for this purpose, where all the logs generated during the execution of the Python program are stored. I have created this directory to have all the logs together in one place. You can see how I have created the logs in the provided Python code.
+
+
 Now, let's move on to the main part of the project, which is executing the Python code that I mentioned earlier.
 
 ### 0. import our needed libraries
@@ -227,6 +230,115 @@ model.save('Mnist_model.h5')
 ```
 
 ### 8. Convert the model
+Now you need to use the .h5 file that you have created from your model and convert it to an ONNX file. In this section, you should execute the operating system-related codes. However, since we want the entire code to be executed uniformly in a Python file, we have also included this section in the same Python file.  
+
+```python
+model = tf.keras.models.load_model("Mnist_model.h5")
+tf.saved_model.save(model, "tmp_model")
+cmd = 'python3.7 -m tf2onnx.convert --opset 13 --saved-model tmp_model --output "Mnist_model.onnx"'
+os.system(cmd)
+# cmd = 'zip -r /content/tmp_model.zip /content/tmp_model'
+# os.system(cmd)                   #  (3) -- we can run this command to -- / 
+print('------------------------------')
+print('has been converted succesfully')
+print('------------------------------')
+```
+
+### 9. Calibration
+In this section, quantization is performed. This means that the parameters created by your deep learning model for each layer should be converted to uint16 numbers. However, in this section, you can also use uint8 to reduce the size of your parameters. As you have noticed so far, this process can be accompanied by a very small quantization error, which you will discover later, resulting in a slight discrepancy between the model's predictions in Python and on the ESP32. Additionally, in this section, two files related to the coefficients mentioned earlier are created in the respective directory.
+
+
+```python
+# load the ONNX model 
+onnx_model = onnx.load("Mnist_model.onnx")
+
+# optimize the ONNX model 
+optimized_model_path = optimize_fp_model("Mnist_model.onnx")
+
+batch = next(iter(val_ds.take(1)))
+images, labels = batch[0].numpy().astype("uint8"), batch[1].numpy()
+
+test_images = images.copy()
+test_labels = labels.copy()
+
+calib_dataset = test_images[0:1800:20]
+pickle_file_path = 'Mnist_calib.picle'
+
+# calibration
+model_proto = onnx.load(optimized_model_path)
+print('Generating the quantization table:')
+
+calib = Calibrator('int16', 'per-tensor', 'minmax')
+# calib = Calibrator('int8', 'per-tensor', 'minmax')
+
+calib.set_providers(['CPUExecutionProvider'])
+
+# Obtain the quantization parameter
+calib.generate_quantization_table(model_proto, calib_dataset, pickle_file_path)
+
+# Generate the coefficient files for esp32s3
+coefficient_path = '../model/'
+coefficient_name = 'Mnist_coefficient'
+calib.export_coefficient_to_cpp(model_proto,
+                                pickle_file_path,
+                                target_chip='esp32',
+                                output_path=coefficient_path,
+                                file_name=coefficient_name,
+                                print_model_info=True)
+```
+
+### 10. Evaluation (optional)
+```python
+batch = next(iter(val_ds.take(1)))
+images, labels = batch[0].numpy().astype("uint8"), batch[1].numpy()
+pred = model.predict(images)
+for i in range(10):
+    print('pred(', i, ') : ', pred[i])
+    pred_arg = np.argmax(pred[i])
+    print('arg : ', pred_arg)
+    print('y : ', labels[i])
+    print('--------------------')
+```
+
+### 12. insert input image to app_main.cpp file 
+In this section, we have saved one of the images from the dataset as a test in the "image.hpp" file. This allows us to later test it on the ESP32 and observe the predictions of our model on the ESP32 using this image.  
+
+```python
+line_number = 12
+
+# Read the existing content of the file
+with open('../main/image.hpp', 'r') as file:
+    lines = file.readlines()
+
+my_in = images[9]
+my_input = my_in.reshape(-1)
+
+# Convert each element to a string and join them with commas
+output_string = ', '.join(map(str, my_input))
+
+# Modify the desired line with the array string
+lines[line_number - 1] = output_string + '\n'
+
+
+with open('../main/image.hpp', 'w') as file:
+    
+    # Write the output string to the file
+    file.writelines(lines)
+
+plt.imshow(my_in)
+plt.show()
+```
+### 13. create cpp files
+As you have already understood, to run this project on ESP32, you need to manually create three files: app_main.cpp, model_define.hpp, and image.hpp. The remaining files are created automatically. Therefore, you need to create these files similar to the following code snippets and place them in the appropriate directories, as I mentioned earlier.  
+
+```cpp
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+```
+
+
+
 
 
 
@@ -318,7 +430,9 @@ I have reached various results by performing these parts that I mentioned above,
 
 ## Getting Started
 
-To get started with this project, follow the instructions in each folder's README file. The README files in each folder provide detailed explanations and instructions specific to that step.
+To get started with this project, follow the instructions in each folder's README file. The README files in each folder provide detailed explanations and instructions specific to that step. Therefore, you need to create these files similar to the following code snippets and place them in the appropriate directories, as I mentioned earlier. 
+
+
 
 
 
