@@ -62,6 +62,20 @@ from calibrator import *
 from evaluator import *
 ```
 
+As you can see, initially, we need to install the required libraries. For using common and popular Python libraries such as numpy, matplotlib, etc., you can easily do this by using the command "pip install ...". However, to use ONNX, you need to follow the installation steps below.  
+```bash
+sudo apt install python3.7
+python3.7 -m pip install Numba==0.53.1
+python3.7 -m pip install ONNX==1.9.0
+python3.7 -m pip install ONNXRuntime==1.7.0
+python3.7 -m pip install ONNXOptimizer==0.2.6
+```
+Please note that in order to install ONNX without any issues, you need to use Python version 3.7.
+
+
+
+
+
 ### 1. Loading our dataset
 In this part, you need to choose a dataset on which you want to implement your deep learning model and input it into your program. Here, I have worked with the Mnist dataset initially and then selected another dataset for gender classification. I have provided the links to both datasets below.
 - The dataset used in this project is sourced from Kaggle [link](https://www.kaggle.com/datasets/vikramtiwari/mnist-numpy/ ).
@@ -204,6 +218,15 @@ for i in range(9):
     plt.axis("off")
 plt.show()
 ```
+
+### 7. Saving the model
+In this section, we need to first save our trained deep learning model in the .h5 format so that we can later convert it to the ONNX format for usage.  
+
+```python
+model.save('Mnist_model.h5')
+```
+
+### 8. Convert the model
 
 
 
