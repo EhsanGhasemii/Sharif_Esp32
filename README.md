@@ -330,11 +330,66 @@ plt.show()
 ```
 ### 13. create cpp files
 As you have already understood, to run this project on ESP32, you need to manually create three files: app_main.cpp, model_define.hpp, and image.hpp. The remaining files are created automatically. Therefore, you need to create these files similar to the following code snippets and place them in the appropriate directories, as I mentioned earlier.  
+In the file app_main.cpp, you specify what you want to run on the esp32. For example, here I have written the codes related to using the model and applying parameters to the input. I have also checked the execution time of this code on the Esp32. Additionally, I have displayed the output for predicting the model for both available classes by Esp32. This means I have stated the scores that each of the male and female classes had for the input image and the probability of the input image being male or female.
 
 ```cpp
+//app_main.cpp
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "esp_timer.h"
+#include "esp_system.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "dl_tool.hpp"
+#include "model_define.hpp"
+#include "image.hpp"
+
+
+extern "C" void app_main(void)
+{
+    Tensor<int16_t> input;
+    
+    input.set_element((int16_t *)example_element)
+         .set_exponent(input_exponent)
+         .set_shape({input_height,input_width,input_channel})
+         .set_auto_free(false);
+        
+    MNIST model;
+    dl::tool::Latency latency;
+    latency.start();
+
+    // start the timer
+    uint64_t start_time = esp_timer_get_time();
+    
+    model.forward(input);
+
+    // stop the timer
+    uint64_t end_time = esp_timer_get_time();
+    
+    // claculate the elapsed time
+    uint64_t elapsed = end_time - start_time; 
+    
+    // convert time format to float 
+    float elapsed_time = float(elapsed);
+
+    latency.end();
+    latency.print("\nSIGN", "forward");
+    
+    float *score = model.l9.get_output().get_element_ptr();
+    float max_score = score[0];
+    int max_index = 0;
+    
+    printf("input : %d\n", example_element[0]);
+    for(int i=0; i<2; i++){
+        printf("score[%d] : %.7f\n", i, score[i]);
+    }
+    printf("=====================\n");
+    
+    printf("Elapsed time : %.3f miliseconds\n", elapsed_time/1000); 
+    
+}
 ```
 
 
