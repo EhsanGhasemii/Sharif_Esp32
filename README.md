@@ -2,6 +2,20 @@
 
 This repository contains the code and documentation for a project that focuses on converting deep learning models to Esp32 format using Esp-dl. The project aims to deploy a classifier model on the Esp32 platform.
 
+## How to run this project? 
+In this report, we will explain how to implement the conversion of artificial intelligence models written in
+Python to the Esp32 using Esp-dl. The initial step of this process involves building your model in Python
+using torch or TensorFlow-Keras. Then, you train the model on your desired dataset and finally transfer the
+model to the Esp32. As you have already realised, familiarity with the following items is necessary for this
+process.  
+- Proficient in building and training neural networks
+- Expertise in configuring the ESP-IDF release 4.4 environment
+- Working knowledge of C and C++ programming languages
+This can be highly applicable in many IoT (Internet of Things) and embedded systems projects. Being able to
+perform artificial intelligence processing with the help of a small processor can be useful in various
+applications, including smart factories, home automation, and more. The esp32, which is a low-cost WiFi
+module with multiple features, allows us to perform a wide range of tasks at a relatively affordable price.
+
 ## Project Overview
 
 The project consists of six folders, each representing a step in the process of converting and deploying deep learning models. Folder number 21 is the most complete version of the implementation of a deep learning model on Mnist data, which we transferred and implemented on the board. Therefore, in this section, I have put all the codes, except for the dataset, which you should download and put in the folder I said. But in folders number 15 to 20, I have placed only the Python code, which if you are familiar with the process, you can use it by placing it in a suitable directory. Here's a brief overview of each folder:
