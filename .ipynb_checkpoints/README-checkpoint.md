@@ -11,6 +11,7 @@ process.
 - Proficient in building and training neural networks
 - Expertise in configuring the ESP-IDF release 4.4 environment
 - Working knowledge of C and C++ programming languages
+
 This can be highly applicable in many IoT (Internet of Things) and embedded systems projects. Being able to
 perform artificial intelligence processing with the help of a small processor can be useful in various
 applications, including smart factories, home automation, and more. The esp32, which is a low-cost WiFi
