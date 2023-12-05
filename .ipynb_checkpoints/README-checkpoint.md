@@ -38,7 +38,9 @@ I have prepared a Python code for this project that automatically generates all 
   - Mnist.py
   - optimizer.py
 - CMakeLists.txt
-Here, all you need to do is simply execute the "Mnist.py" code. By doing so, two files, "Mnist_coefficient.cpp" and "Mnist_coefficient.hpp," will be automatically generated. However, it is necessary for you to create the files "app_main.cpp," "image.hpp," and "model_define.hpp" exactly as I have written them.
+
+Here, all you need to do is simply execute the "Mnist.py" code. By doing so, two files, "Mnist_coefficient.cpp" and "Mnist_coefficient.hpp," will be automatically generated. However, it is necessary for you to create the files "app_main.cpp," "image.hpp," and "model_define.hpp" exactly as I have written them.  
+
 Now, let's move on to the main part of the project, which is executing the Python code that I mentioned earlier.
 
 
