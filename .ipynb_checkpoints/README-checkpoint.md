@@ -43,6 +43,86 @@ Here, all you need to do is simply execute the "Mnist.py" code. By doing so, two
 
 Now, let's move on to the main part of the project, which is executing the Python code that I mentioned earlier.
 
+### 1. import our needed libraries
+
+
+```python
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+import tensorflow as tf
+import tf2onnx
+from tensorflow import keras
+from tensorflow.keras import layers
+from sklearn.model_selection import train_test_split
+
+from optimizer import *
+import sys 
+from calibrator import *
+from evaluator import *
+```
+
+### 2. Loading our dataset
+In this part, you need to choose a dataset on which you want to implement your deep learning model and input it into your program. Here, I have worked with the Mnist dataset initially and then selected another dataset for gender classification. I have provided the links to both datasets below.
+- The dataset used in this project is sourced from Kaggle [link](https://www.kaggle.com/datasets/vikramtiwari/mnist-numpy/ ).
+- The dataset used in this project is sourced from Kaggle [link](https://www.kaggle.com/datasets/cashutosh/gender-classification-dataset/code).  
+The first dataset is structured in a way that you download a file named "mnist.npz" and read it in a similar manner in‍‍ your program.
+```python
+# load the data and split it between train and test sets
+(X_train, y_train), (X_test1, y_test1) = keras.datasets.mnist.load_data(path=current_dir+'/mnist.npz')
+
+# test/train split
+ts = 0.3 # percentage of images that we want to use for testing
+X_test, X_cal, y_test, y_cal = train_test_split(X_test1, y_test1, test_size=ts, random_state=42)
+```
+
+And the second dataset is structured in a way that you need to download the data from the provided link and place them in the specified folders. Afterwards, you should put the downloaded data in the "archive" folder. So, you need to have the following directories, which contain your dataset, inside the "archive" folder.
+- archive
+  - training
+    - female
+    - male
+  - validation
+    - female
+    - male
+   
+Finally, you should read the data using the following code.
+```python
+# model / data parameters
+batch_size = 256
+img_height = 60
+img_width = 60
+input_shape = (img_height, img_width, 3)
+num_classes = 2
+
+
+train_dir = '../archive/training'
+valid_dir = '../archive/validation'
+
+
+train_ds = tf.keras.utils.image_dataset_from_directory(
+  train_dir,
+  validation_split=0.2,
+  subset="training",
+  seed=123,
+  image_size=(img_height, img_width),
+  batch_size=batch_size
+)
+
+val_ds = tf.keras.utils.image_dataset_from_directory(
+  valid_dir,
+  validation_split=0.2,
+  subset="validation",
+  seed=123,
+  image_size=(img_height, img_width),
+  batch_size=batch_size
+)
+
+class_names = train_ds.class_names
+print(class_names)
+```
+
+
+
 
 
 
