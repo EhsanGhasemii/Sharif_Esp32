@@ -15,7 +15,36 @@ process.
 This can be highly applicable in many IoT (Internet of Things) and embedded systems projects. Being able to
 perform artificial intelligence processing with the help of a small processor can be useful in various
 applications, including smart factories, home automation, and more. The esp32, which is a low-cost WiFi
-module with multiple features, allows us to perform a wide range of tasks at a relatively affordable price.
+module with multiple features, allows us to perform a wide range of tasks at a relatively affordable price. 
+
+I have prepared a Python code for this project that automatically generates all the necessary components to run our deep learning model on the ESP32. Since I first prepared this project on the Mnist dataset, all the names I used to create different files are saved with those names. In fact, I initially used this project specifically for running the Mnist dataset, and afterwards, when implementing different networks and datasets, I did not change the names and continued to use them. However, the professional approach in this matter is to determine the names according to the project you are working on. Therefore, the name of the Python file I have prepared is "Mnist.py". This code is located in the "src" directory. In order to correctly run this project for your deep learning model and dataset, You need to create the following subfolders so that the execution of the Python code I mentioned does not encounter an error.
+- archive
+- logs
+- main
+  - app_main.cpp
+  - CMakeLists.txt
+  - image.hpp
+- model
+  - Mnist_coefficient.cpp
+  - Mnist_coefficient.hpp
+  - model_define.hpp
+- src
+  - calibrator.pyd
+  - calibrator.so
+  - calibrator_acc.pyd
+  - calibrator_acc.so
+  - evaluator.pyd
+  - evaluator.so
+  - Mnist.py
+  - optimizer.py
+- CMakeLists.txt
+Here, all you need to do is simply execute the "Mnist.py" code. By doing so, two files, "Mnist_coefficient.cpp" and "Mnist_coefficient.hpp," will be automatically generated. However, it is necessary for you to create the files "app_main.cpp," "image.hpp," and "model_define.hpp" exactly as I have written them.
+Now, let's move on to the main part of the project, which is executing the Python code that I mentioned earlier.
+
+
+
+
+
 
 ## Project Overview
 
