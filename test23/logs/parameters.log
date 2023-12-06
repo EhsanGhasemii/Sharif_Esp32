@@ -2,25 +2,26 @@ Model: "sequential"
 _________________________________________________________________
  Layer (type)                Output Shape              Param #   
 =================================================================
- conv2d (Conv2D)             (None, 58, 58, 16)        448       
+ conv2d (Conv2D)             (None, 58, 58, 8)         224       
                                                                  
- conv2d_1 (Conv2D)           (None, 56, 56, 16)        2320      
+ conv2d_1 (Conv2D)           (None, 56, 56, 8)         584       
                                                                  
- conv2d_2 (Conv2D)           (None, 54, 54, 16)        2320      
+ conv2d_2 (Conv2D)           (None, 54, 54, 8)         584       
                                                                  
- conv2d_3 (Conv2D)           (None, 52, 52, 16)        2320      
+ conv2d_3 (Conv2D)           (None, 52, 52, 8)         584       
                                                                  
- max_pooling2d (MaxPooling2D  (None, 26, 26, 16)       0         
+ max_pooling2d (MaxPooling2D  (None, 26, 26, 8)        0         
  )                                                               
                                                                  
- flatten (Flatten)           (None, 10816)             0         
+ flatten (Flatten)           (None, 5408)              0         
                                                                  
- dropout (Dropout)           (None, 10816)             0         
+ dropout (Dropout)           (None, 5408)              0         
                                                                  
- dense (Dense)               (None, 2)                 21634     
+ dense (Dense)               (None, 2)                 10818     
                                                                  
 =================================================================
-Total params: 29,042
-Trainable params: 29,042
+Total params: 12,794
+Trainable params: 12,794
 Non-trainable params: 0
 _________________________________________________________________
+FLOPS : 2.99 G

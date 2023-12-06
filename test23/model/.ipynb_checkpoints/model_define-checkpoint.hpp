@@ -46,7 +46,7 @@ public:
                            1,
                            "l2")
           ),
-        l3(Conv2D<int16_t>(-8,
+        l3(Conv2D<int16_t>(-9,
                            get_statefulpartitionedcall_sequential_conv2d_1_biasadd_filter(), 
                            get_statefulpartitionedcall_sequential_conv2d_1_biasadd_bias(), 
                            get_statefulpartitionedcall_sequential_conv2d_1_biasadd_activation(),
@@ -56,7 +56,7 @@ public:
                            1,
                            "l4")
           ),
-        l4(Conv2D<int16_t>(-10,
+        l4(Conv2D<int16_t>(-11,
                            get_statefulpartitionedcall_sequential_conv2d_2_biasadd_filter(), 
                            get_statefulpartitionedcall_sequential_conv2d_2_biasadd_bias(), 
                            get_statefulpartitionedcall_sequential_conv2d_2_biasadd_activation(),
@@ -77,7 +77,7 @@ public:
                            "l4")
           ),
         l6(MaxPool2D<int16_t>({2, 2}, PADDING_VALID, {}, 2, 2, "l5")),
-        l7(Reshape<int16_t>({1, 1, 10816}, "l6_reshape")),
+        l7(Reshape<int16_t>({1, 1, 5408}, "l6_reshape")),
 		l8(Conv2D<int16_t>(-12,
                            get_fused_gemm_0_filter(),
                            get_fused_gemm_0_bias(),

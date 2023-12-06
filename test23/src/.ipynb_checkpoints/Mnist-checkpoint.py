@@ -7,6 +7,7 @@ import tf2onnx
 from tensorflow import keras
 from tensorflow.keras import layers
 from sklearn.model_selection import train_test_split
+from keras_flops import get_flops
 
 from optimizer import *
 import sys 
@@ -17,6 +18,7 @@ from evaluator import *
 
 # seperate program to two part including 'training', 'deployment'
 train_flag = input('Do you want to train model?(y/n) : ')
+# train_flag = 'n'
 
 
 # # Loading our dataset
@@ -93,10 +95,10 @@ sys.stdout = log_file
 
 model = keras.Sequential()
 model.add(keras.Input(shape=input_shape))
-model.add(layers.Conv2D(16, kernel_size=(3, 3), activation="relu"))
-model.add(layers.Conv2D(16, kernel_size=(3, 3), activation="relu"))
-model.add(layers.Conv2D(16, kernel_size=(3, 3), activation="relu"))
-model.add(layers.Conv2D(16, kernel_size=(3, 3), activation="relu"))
+model.add(layers.Conv2D(8, kernel_size=(3, 3), activation="relu"))
+model.add(layers.Conv2D(8, kernel_size=(3, 3), activation="relu"))
+model.add(layers.Conv2D(8, kernel_size=(3, 3), activation="relu"))
+model.add(layers.Conv2D(8, kernel_size=(3, 3), activation="relu"))
 model.add(layers.MaxPooling2D(pool_size=(2, 2)))
 
 
@@ -104,6 +106,10 @@ model.add(layers.Flatten())
 model.add(layers.Dropout(0.5))
 model.add(layers.Dense(num_classes, activation="softmax"))
 model.summary()
+
+# calculate flops of our model
+flops = get_flops(model, batch_size=batch_size)
+print(f"FLOPS : {flops / 10 ** 9:.03} G")
 
 # save coefficient output file in a log file
 sys.stdout = old_stdout
@@ -288,7 +294,7 @@ line_number = 12
 with open('../main/image.hpp', 'r') as file:
     lines = file.readlines()
 
-my_in = images[9]
+my_in = images[8]
 my_input = my_in.reshape(-1)
 
 # Convert each element to a string and join them with commas
