@@ -563,9 +563,24 @@ public:
 ![Image Description](/pics/test4.png)
 
 
+### 14. run the program in Esp32
+After properly installing Esp-idf and Esp-dl, you can execute the following commands to run the project and observe its output on the Esp32.  
 
+Please make sure to execute these commands in the directory where esp-idf is located.
 
+```bash
+./instal.sh
+. ./export.sh
+```
+How to install esp-idf [link](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-setup.html
+). 
 
+Now, if you execute the following commands in the directory where you have built your project, you can observe the output of this project on the Esp32.
+
+```bash
+idf.py build
+idf.py -p /dev/ttyUSB0 flash monitor
+```
 
 
 
