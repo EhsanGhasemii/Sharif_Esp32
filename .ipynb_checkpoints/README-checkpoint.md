@@ -391,9 +391,25 @@ extern "C" void app_main(void)
     
 }
 ```
+You should save the information of all the pixels in your image in the "image.hpp" file. For this task, make sure to define the size of the input image according to what I have defined. If the size of the input image does not match the defined size in the neural network, your program will not run correctly on the Esp32.  
 
+```cpp
+//image.hpp
 
+#pragma once
+#include <stdint.h>
 
+#define input_height 60
+#define input_width 60
+#define input_channel 3
+#define input_exponent 0
+
+const static uint16_t example_element[] = {
+
+    // your image's pixels should be here
+
+};
+```
 
 
 
