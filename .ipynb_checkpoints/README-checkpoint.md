@@ -609,10 +609,16 @@ The test18 folder contains a complete model with two conv2d layers and two maxpo
 In this step, the model from test18 is repeated, but with a more complex dataset. The dataset includes images with a size of 15x15 and 10 different classes. The goal is to showcase the scalability and performance of Esp32 with larger and more diverse datasets.
 
 ### test20
-The test20 folder concludes the project by using the popular Mnist dataset. The same model architecture from test19 is applied to classify handwritten digits. This step demonstrates the successful deployment of a classifier model on the Esp32 platform using Esp-dl.
+The test20 folder concludes the project by using the popular Mnist dataset. The same model architecture from test19 is applied to classify handwritten digits. This step demonstrates the successful deployment of a classifier model on the Esp32 platform using Esp-dl.  
+
 
 ### test21(End of Mnist dataset)
-In this part, we implemented the same as the previous part, with the difference that we tried to make our model more complicated so that we could check the maximum parameters that we can transfer on the board. To be able to run this part correctly, you need to download the Mnist dataset and place it in the "src" folder.
+In this part, we implemented the same as the previous part, with the difference that we tried to make our model more complicated so that we could check the maximum parameters that we can transfer on the board. To be able to run this part correctly, you need to download the Mnist dataset and place it in the "src" folder.  
+you can see result of this part in here. 
+![Image Description](/pics/test5.png)
+![Image Description](/pics/test6.png)
+![Image Description](/pics/test7.png)
+![Image Description](/pics/test8.png)
 
  
 
@@ -622,6 +628,9 @@ This episode was a failed attempt. I was planning to do this project with the he
 
 ### test23
 In this part, I tried to do the gender classification project with the help of deep learning. I used the Gender classification dataset in the link below.  
+you can see result of this part in here. 
+![Image Description](/pics/test9.png)
+![Image Description](/pics/test10.png)
 
 
 
