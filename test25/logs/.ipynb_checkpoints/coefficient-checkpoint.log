@@ -1,0 +1,23 @@
+Converting coefficient to int16 per-tensor quantization for esp32
+Exporting finish, the output files are: ../model//Mnist_coefficient.cpp, ../model//Mnist_coefficient.hpp
+
+Quantized model info:
+model input name: input_1, exponent: -7
+Reshape layer name: StatefulPartitionedCall/sequential/conv2d/BiasAdd__6, output_exponent: -7
+Conv layer name: StatefulPartitionedCall/sequential/conv2d/BiasAdd, output_exponent: -8
+Conv layer name: StatefulPartitionedCall/sequential/conv2d_1/BiasAdd, output_exponent: -8
+Conv layer name: StatefulPartitionedCall/sequential/conv2d_2/BiasAdd, output_exponent: -9
+Conv layer name: StatefulPartitionedCall/sequential/conv2d_3/BiasAdd, output_exponent: -9
+Conv layer name: StatefulPartitionedCall/sequential/conv2d_4/BiasAdd, output_exponent: -10
+Conv layer name: StatefulPartitionedCall/sequential/conv2d_5/BiasAdd, output_exponent: -10
+Conv layer name: StatefulPartitionedCall/sequential/conv2d_6/BiasAdd, output_exponent: -11
+Conv layer name: StatefulPartitionedCall/sequential/conv2d_7/BiasAdd, output_exponent: -11
+Conv layer name: StatefulPartitionedCall/sequential/conv2d_8/BiasAdd, output_exponent: -12
+Conv layer name: StatefulPartitionedCall/sequential/conv2d_9/BiasAdd, output_exponent: -12
+Conv layer name: StatefulPartitionedCall/sequential/conv2d_10/BiasAdd, output_exponent: -12
+Transpose layer name: StatefulPartitionedCall/sequential/conv2d_10/BiasAdd__48, output_exponent: -12
+Reshape layer name: StatefulPartitionedCall/sequential/flatten/Reshape, output_exponent: -12
+Gemm layer name: fused_gemm_0, output_exponent: -10
+Softmax layer name: StatefulPartitionedCall/sequential/dense/Softmax, output_exponent: -14
+
+

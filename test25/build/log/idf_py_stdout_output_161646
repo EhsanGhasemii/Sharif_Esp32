@@ -1,0 +1,73 @@
+[1/11] Performing build step for 'bootloader'
+[1/1] cd /home/ehsan/esp-dl/examples/test25/build/bootloader/esp-idf/esptool_py && /home/ehsan/.espressif/python_env/idf5.0_py3.10_env/bin/python /home/ehsan/esp/esp-idf-v5.0/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/ehsan/esp-dl/examples/test25/build/bootloader/bootloader.bin
+Bootloader binary size 0x6700 bytes. 0x900 bytes (8%) free.
+[2/9] Building CXX object esp-idf/main/CMakeFiles/__idf_main.dir/__/model/Mnist_coefficient.cpp.obj
+[3/9] Building CXX object esp-idf/main/CMakeFiles/__idf_main.dir/app_main.cpp.obj
+/home/ehsan/esp-dl/examples/test25/main/app_main.cpp: In function 'void app_main()':
+/home/ehsan/esp-dl/examples/test25/main/app_main.cpp:43:11: warning: unused variable 'max_score' [-Wunused-variable]
+   43 |     float max_score = score[0];
+      |           ^~~~~~~~~
+/home/ehsan/esp-dl/examples/test25/main/app_main.cpp:44:9: warning: unused variable 'max_index' [-Wunused-variable]
+   44 |     int max_index = 0;
+      |         ^~~~~~~~~
+[4/9] Linking C static library esp-idf/main/libmain.a
+[5/9] Generating ld/sections.ld
+[6/9] Linking CXX executable deploy.elf
+[7/9] Generating binary image from built executable
+esptool.py v4.7.0
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated /home/ehsan/esp-dl/examples/test25/build/deploy.bin
+[8/9] cd /home/ehsan/esp-dl/examples/test25/build/esp-idf/esptool_py && /home/ehsan/.espressif/python_env/idf5.0_py3.10_env/bin/python /home/ehsan/esp/esp-idf-v5.0/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/ehsan/esp-dl/examples/test25/build/partition_table/partition-table.bin /home/ehsan/esp-dl/examples/test25/build/deploy.bin
+deploy.bin binary size 0x82a40 bytes. Smallest app partition is 0x100000 bytes. 0x7d5c0 bytes (49%) free.
+[8/9] cd /home/ehsan/esp/esp-idf-v5.0/components/esptool_py && /usr/bin/cmake -D IDF_PATH=/home/ehsan/esp/esp-idf-v5.0 -D "SERIAL_TOOL=/home/ehsan/.espressif/python_env/idf5.0_py3.10_env/bin/python;;/home/ehsan/esp/esp-idf-v5.0/components/esptool_py/esptool/esptool.py;--chip;esp32" -D "SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args" -D WORKING_DIRECTORY=/home/ehsan/esp-dl/examples/test25/build -P /home/ehsan/esp/esp-idf-v5.0/components/esptool_py/run_serial_tool.cmake
+esptool.py --chip esp32 -p /dev/ttyUSB0 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 2MB 0x1000 bootloader/bootloader.bin 0x10000 deploy.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.7.0
+Serial port /dev/ttyUSB0
+Connecting....................
+Chip is ESP32-D0WD-V3 (revision v3.0)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: 8c:4b:14:e1:53:6c
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00007fff...
+Flash will be erased from 0x00010000 to 0x00092fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+Compressed 26368 bytes to 16416...
+Writing at 0x00001000... (50 %)
+Writing at 0x000076e7... (100 %)
+Wrote 26368 bytes (16416 compressed) at 0x00001000 in 0.9 seconds (effective 245.6 kbit/s)...
+Hash of data verified.
+Compressed 535104 bytes to 263048...
+Writing at 0x00010000... (5 %)
+Writing at 0x00017aff... (11 %)
+Writing at 0x0001c623... (17 %)
+Writing at 0x000275f5... (23 %)
+Writing at 0x00037b01... (29 %)
+Writing at 0x0003f06f... (35 %)
+Writing at 0x00044a65... (41 %)
+Writing at 0x0004b16c... (47 %)
+Writing at 0x00051b7e... (52 %)
+Writing at 0x0005c03a... (58 %)
+Writing at 0x00063d3f... (64 %)
+Writing at 0x0006c755... (70 %)
+Writing at 0x000730f3... (76 %)
+Writing at 0x0007bb84... (82 %)
+Writing at 0x0008472b... (88 %)
+Writing at 0x0008c53c... (94 %)
+Writing at 0x000923d8... (100 %)
+Wrote 535104 bytes (263048 compressed) at 0x00010000 in 6.8 seconds (effective 629.9 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 103...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.1 seconds (effective 472.7 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...

@@ -1,0 +1,25 @@
+Converting coefficient to int16 per-tensor quantization for esp32
+Exporting finish, the output files are: ../model//Mnist_coefficient.cpp, ../model//Mnist_coefficient.hpp
+
+Quantized model info:
+model input name: input_1, exponent: -7
+Reshape layer name: StatefulPartitionedCall/model/conv2d/Conv2D__6, output_exponent: -7
+Conv layer name: StatefulPartitionedCall/model/conv2d/Conv2D, output_exponent: -10
+Conv layer name: StatefulPartitionedCall/model/conv2d_1/Conv2D, output_exponent: -10
+MaxPool layer name: StatefulPartitionedCall/model/max_pooling2d/MaxPool, output_exponent: -10
+Conv layer name: StatefulPartitionedCall/model/conv2d_2/Conv2D, output_exponent: -9
+MaxPool layer name: StatefulPartitionedCall/model/max_pooling2d_1/MaxPool, output_exponent: -9
+Conv layer name: StatefulPartitionedCall/model/conv2d_3/Conv2D, output_exponent: -10
+Conv layer name: StatefulPartitionedCall/model/conv2d_4/Conv2D, output_exponent: -10
+MaxPool layer name: StatefulPartitionedCall/model/max_pooling2d_2/MaxPool, output_exponent: -10
+Conv layer name: StatefulPartitionedCall/model/conv2d_5/Conv2D, output_exponent: -10
+Conv layer name: StatefulPartitionedCall/model/conv2d_6/Conv2D, output_exponent: -11
+MaxPool layer name: StatefulPartitionedCall/model/max_pooling2d_3/MaxPool, output_exponent: -11
+Conv layer name: StatefulPartitionedCall/model/conv2d_7/Conv2D, output_exponent: -11
+Conv layer name: StatefulPartitionedCall/model/conv2d_8/Conv2D, output_exponent: -10
+MaxPool layer name: StatefulPartitionedCall/model/max_pooling2d_4/MaxPool, output_exponent: -10
+Reshape layer name: StatefulPartitionedCall/model/flatten/Reshape, output_exponent: -10
+Gemm layer name: fused_gemm_0, output_exponent: -10
+Softmax layer name: StatefulPartitionedCall/model/softmax/Softmax, output_exponent: -14
+
+

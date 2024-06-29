@@ -1,0 +1,32 @@
+Model: "model"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_1 (InputLayer)        [(None, 1, 784, 1)]       0         
+                                                                 
+ conv2d (Conv2D)             (None, 1, 388, 8)         72        
+                                                                 
+ batch_normalization (BatchN  (None, 1, 388, 8)        32        
+ ormalization)                                                   
+                                                                 
+ re_lu (ReLU)                (None, 1, 388, 8)         0         
+                                                                 
+ conv2d_1 (Conv2D)           (None, 1, 192, 32)        1280      
+                                                                 
+ batch_normalization_1 (Batc  (None, 1, 192, 32)       128       
+ hNormalization)                                                 
+                                                                 
+ re_lu_1 (ReLU)              (None, 1, 192, 32)        0         
+                                                                 
+ flatten (Flatten)           (None, 6144)              0         
+                                                                 
+ dense (Dense)               (None, 10)                61450     
+                                                                 
+ softmax (Softmax)           (None, 10)                0         
+                                                                 
+=================================================================
+Total params: 62,962
+Trainable params: 62,882
+Non-trainable params: 80
+_________________________________________________________________
+FLOPS : 0.0441 G

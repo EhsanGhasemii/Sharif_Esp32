@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/ehsan/Desktop/Sharif_Esp32/test21/build/CMakeFiles/bootloader
+/home/ehsan/Desktop/Sharif_Esp32/test21/build/CMakeFiles/bootloader.rule
+/home/ehsan/Desktop/Sharif_Esp32/test21/build/CMakeFiles/bootloader-complete.rule
+/home/ehsan/Desktop/Sharif_Esp32/test21/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/ehsan/Desktop/Sharif_Esp32/test21/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/ehsan/Desktop/Sharif_Esp32/test21/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/ehsan/Desktop/Sharif_Esp32/test21/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/ehsan/Desktop/Sharif_Esp32/test21/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/ehsan/Desktop/Sharif_Esp32/test21/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/ehsan/Desktop/Sharif_Esp32/test21/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
